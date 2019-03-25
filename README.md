@@ -1,2 +1,2 @@
-# SeeFood_AI
-An AI class that can determine if the passed image is food or not. 
+# iSeefood
+A python program that uses a trained AI to recognize food in images. 
