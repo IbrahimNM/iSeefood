@@ -1,5 +1,5 @@
 # iSeefood
-[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood)
+[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood)
 
 A python program that uses a trained AI to recognize food in images. 
 
