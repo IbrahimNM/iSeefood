@@ -1,5 +1,5 @@
 '''
-    --------------- NOTE -------------------------------
+    ------------------- NOTE ---------------------------
     THIS CLASS SHALL BE A SINGLETON. 
     CURRENTLY, WE ONLY NEED A SINGLE INSTANCE
     TO BE RUNNING. 
@@ -10,8 +10,8 @@
     AI IS PROVIDED BY DR.DORAN FROM WRIGHT STATE
     UNIVERSITY.  
     -------------- AUTHOR ------------------------------
-          IBRAHIM ALMOHAIMEED 
-        ALMOHAIMEED.10@GMAIL.COM
+            IBRAHIM ALMOHAIMEED 
+          ALMOHAIMEED.10@GMAIL.COM
               XX/XX/2019
     ----------------------------------------------------
 '''
