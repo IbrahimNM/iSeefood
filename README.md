@@ -3,19 +3,16 @@
 
 A python program that uses a trained AI to recognize food in images. 
 
-## Getting Started
+#What Is This?
+-------------
+...... etc
 
-### Prerequisites
-  
-### Installing
+How To Use This
+---------------
 
-## Deployment
+1. .... etc
 
 ### Note
-
-### Using the App
-
-### Design
 
 ## Built With
 
