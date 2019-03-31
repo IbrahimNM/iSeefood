@@ -3,14 +3,16 @@
 
 A python program that uses a trained AI to recognize food in images. 
 
-#What Is This?
+What Is This?
 -------------
 ...... etc
 
 How To Use This
 ---------------
 
-1. .... etc
+1. .... 
+2. ....
+3. ....
 
 ### Note
 
@@ -33,3 +35,4 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 
 ## Acknowledgments
 * **Machine Learning and Complex Systems Lab at Wright State University** - [GitHub repo](https://github.com/wsu-wacs/seefood)
+# 
