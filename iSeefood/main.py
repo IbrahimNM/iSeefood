@@ -14,9 +14,9 @@ def main():
     print current
 
     # Args handling 
-    args = parser.parse_args() 
-    image_path = args.image_path
-    current.submitImg(image_path)
+    #args = parser.parse_args() 
+    #image_path = args.image_path
+    #current.submitImg(image_path)
     
 
 if __name__ == "__main__":
