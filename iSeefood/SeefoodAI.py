@@ -25,15 +25,9 @@ class SeefoodAI(object):
     # Single private instance 
     __instance = None
     
+    # Initilize global variables. 
     global sess, class_scores, x_input, keep_prob
-    sess = tf.Session()
-    saver = tf.train.import_meta_graph('saved_model/model_epoch5.ckpt.meta')
-    saver.restore(sess, tf.train.latest_checkpoint('saved_model/'))
-    graph = tf.get_default_graph()
-    x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
-    keep_prob = graph.get_tensor_by_name('Placeholder:0')
-    class_scores = graph.get_tensor_by_name("fc8/fc8:0")
-
+    
     # Initilize an AI object to be running 
     def __init__(self):
         ''' Virtually private constructor '''
@@ -42,7 +36,7 @@ class SeefoodAI(object):
         else:
             SeefoodAI.__instance = self
             SeefoodAI.__instance.__setup()
-        print "Seefood AI instance has been created!"
+        print "+ Seefood AI instance has been created!"
         
     
     @staticmethod
@@ -55,7 +49,26 @@ class SeefoodAI(object):
     
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
-        print("Setting up instance ....")
+        # try initializing the AI instance attrs, catch possible errors. 
+        # TODO: Make it pretty :) 
+        global sess, class_scores, x_input, keep_prob    
+
+
+        try:
+            sess = tf.Session() 
+            saver = tf.train.import_meta_graph('saved_model/model_epoch5.ckpt.meta')
+            saver.restore(sess, tf.train.latest_checkpoint('saved_model/'))
+            graph = tf.get_default_graph()
+            x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
+            keep_prob = graph.get_tensor_by_name('Placeholder:0')
+            class_scores = graph.get_tensor_by_name("fc8/fc8:0")
+        except:
+            print '------ [An error occured during initialization] -----'
+        else:
+            print '++++++ [No errors occured during initialization +++++'
+
+        print("+ Setting up instance ....")
+        
         
     
     def submitImg(self, image_path):
@@ -63,15 +76,15 @@ class SeefoodAI(object):
         image = Image.open(image_path).convert('RGB')
         image = image.resize((227, 227), Image.BILINEAR)
         img_tensor = [np.asarray(image, dtype=np.float32)]
-        print 'looking for food in ' + image_path
+        print '+ Looking for food in ' + image_path + ' ...... '
 
         #Run the image in the model.
         scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
-        print scores
+        print '+ Statistics: ', scores
         # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
         # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
         if np.argmax(scores) == 1:
-            print "No food here... :( "
+            print "--> Oops! No food here... :( "
         else:
-            print "Oh yes... I see food! :D"
-        print("Analyzing image.... Done!")
+            print "--> YAY! I see food! :)"
+        print("_________ Analyzing image.... Done! __________")

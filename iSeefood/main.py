@@ -6,17 +6,21 @@ parser.add_argument('image_path', help="The full path to an image file stored on
 
 
 def main():
-    print 'Hello Ibrahim ... '
-    # Get the singleton object of the SeefoodAI object.
+    print 'Hello friend, glad to see you here ... '
     
     # Get the singleton object of the SeefoodAI object.
     current = SeefoodAI.getInstance()
-    print current
 
     # Args handling 
-    #args = parser.parse_args() 
-    #image_path = args.image_path
-    #current.submitImg(image_path)
+    '''
+        - Check for args:
+        - If there's no args passed, display message for user. 
+        - If there're args passed, check their validity then continue
+    '''
+
+    args = parser.parse_args() 
+    image_path = args.image_path
+    current.submitImg(image_path)
     
 
 if __name__ == "__main__":
