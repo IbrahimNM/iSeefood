@@ -42,7 +42,7 @@ class SeefoodAI(object):
     @staticmethod
     def getInstance():
         ''' Static access method '''
-        if SeefoodAI.__instance == None:
+        if SeefoodAI.__instance is None:
             SeefoodAI()
         return SeefoodAI.__instance
     
