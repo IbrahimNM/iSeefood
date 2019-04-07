@@ -24,8 +24,8 @@ def main():
         # TODO: Verify and validate file path
         current.submitImg(getFilePath())
            
-    except:
-        print '** Please check file path! **'    
+    except IOError as e:
+        print '** Please check file path! **'  
 """
  JavaDoc needed 
 """
