@@ -21,14 +21,19 @@ def main():
     try:
         
         print 'Enter image path: '
-        image_path = raw_input() # get file path from user
-        image_path = image_path.strip() # remove white spaces.
         # TODO: Verify and validate file path
-        current.submitImg(image_path)
+        current.submitImg(getFilePath())
            
     except:
         print '** Please check file path! **'    
-
+"""
+ JavaDoc needed 
+"""
+def getFilePath():
+    image_path = raw_input()
+    image_path = image_path.strip()
+    # Validaiton & Verification required. 
+    return image_path
    
 if __name__ == "__main__":
    main()
