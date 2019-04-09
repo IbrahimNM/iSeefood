@@ -53,7 +53,6 @@ class SeefoodAI(object):
         # TODO: Make it pretty :) 
         global sess, class_scores, x_input, keep_prob    
 
-
         try:
             sess = tf.Session() 
             saver = tf.train.import_meta_graph('saved_model/model_epoch5.ckpt.meta')
@@ -83,17 +82,22 @@ class SeefoodAI(object):
         image = Image.open(image_path).convert('RGB')
         # Resize image to 227x227
         image = image.resize((227, 227), Image.BILINEAR)
-        
+
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
 
         #Run the image in the model.
         scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
+        """ FIXME: Handle the scores! """
         print '+ Statistics: ', scores
+        # Calculate score and display result
+        self.scoresCalculation(scores)
+        print("_________ Analyzing image.... Done! __________")
+
+    def scoresCalculation(self, scores):
         # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
         # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
         if np.argmax(scores) == 1:
-            print "--> Oops! No food here... :( "
+            print "+ Result:  Oops! No food here... :( "
         else:
-            print "--> YAY! I see food! :)"
-        print("_________ Analyzing image.... Done! __________")
+            print "+ Results: YAY! I see food! :)"
