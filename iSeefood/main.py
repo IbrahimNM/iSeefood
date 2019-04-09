@@ -4,7 +4,7 @@ import sys
 
 
 def main():
-    print 'Hello friend, glad to see you here ... '
+    print 'Hello friend, welcome to iSeefood AI sample... '
     
     # Get the singleton object of the SeefoodAI object.
     current = SeefoodAI.getInstance()
@@ -19,10 +19,12 @@ def main():
  JavaDoc needed 
 """
 def getFilePath():
+    ''' Get image path from user'''
     image_path = raw_input()
     image_path = image_path.strip()
-    # TODO: Validaiton & Verification required. 
+    # TODO: Validaiton & Verification required (X.png, Y.jpg). 
     return image_path
+    
    
 if __name__ == "__main__":
    main()
