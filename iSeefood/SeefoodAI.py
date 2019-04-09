@@ -68,13 +68,22 @@ class SeefoodAI(object):
             print '++++++ [No errors occured during initialization +++++'
 
         print("+ Setting up instance ....")
-        
-        
-    
+ 
     def submitImg(self, image_path):
-        ''' Passing an image to the AI to be analyzed '''
+        """ Passing an image to the AI to be analyzed
+
+            Parameters:
+            image_path (int): File path to be processed 
+
+            Returns:
+            int: Statistical data. 
+
+        """
+        # Open passed image, then convert it to RGB 
         image = Image.open(image_path).convert('RGB')
+        # Resize image to 227x227
         image = image.resize((227, 227), Image.BILINEAR)
+        
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
 
