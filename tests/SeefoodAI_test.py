@@ -3,11 +3,12 @@
 
 '''
 import pytest
-from iSeefood import SeefoodAI
+from iSeefood.SeefoodAI import SeefoodAI
 
 def test_submitImg():
     ''' TODO: Test the image processing unit '''
-    assert False, "Image Submition Test"
+    current = SeefoodAI()
+    # assert False, "Image Submition Test"
 
 def test_pathValidation():
     ''' TODO: Test the Validation unit '''
