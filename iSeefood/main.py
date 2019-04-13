@@ -11,7 +11,7 @@ def main():
     try:
         
         print 'Enter image path: '
-        current.submitImg(getFilePath())
+        current.process(getFilePath())
            
     except IOError as e:
         print '** Please check file path! **'  

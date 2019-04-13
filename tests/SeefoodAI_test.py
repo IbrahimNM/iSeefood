@@ -5,14 +5,15 @@
 import pytest
 from iSeefood.SeefoodAI import SeefoodAI
 
-def test_submitImg():
+def test_process():
     ''' TODO: Test the image processing unit '''
-    current = SeefoodAI()
-    # assert False, "Image Submition Test"
+    assert True, "Image Submition Test"
 
 def test_pathValidation():
     ''' TODO: Test the Validation unit '''
-    assert True, "Validation Test"
+    current = SeefoodAI()
+    pathState = current.pathValidation("iSeefood/samples/cookies.png")
+    assert pathState == True, "Validation Test"
 
 def test_pathVerification():
     '''  TODO: Test the Verification unit '''

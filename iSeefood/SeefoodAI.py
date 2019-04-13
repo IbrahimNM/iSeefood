@@ -46,7 +46,7 @@ class SeefoodAI(object):
             SeefoodAI()
         return SeefoodAI.__instance
     
-    
+
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
         # try initializing the AI instance attrs, catch possible errors. 
@@ -68,33 +68,31 @@ class SeefoodAI(object):
 
         print("+ Setting up instance ....")
  
-    def submitImg(self, image_path):
-        """ Passing an image to the AI to be analyzed
-
-            Parameters:
-            image_path (int): File path to be processed 
-
-            Returns:
-            int: Statistical data. 
-
-        """
+    def process(self, image_path):
+        '''TODO: Accept file path '''
+        global sess, class_scores, x_input, keep_prob    
         # Open passed image, then convert it to RGB 
         image = Image.open(image_path).convert('RGB')
         # Resize image to 227x227
         image = image.resize((227, 227), Image.BILINEAR)
-
+        # Create a tensor
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
 
         #Run the image in the model.
         scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
-        """ FIXME: Handle the scores! """
+        
         print '+ Statistics: ', scores
         # Calculate score and display result
-        self.scoresCalculation(scores)
+        self.__scoresCalculation(scores)
         print("_________ Analyzing image.... Done! __________")
 
-    def scoresCalculation(self, scores):
+    def pathValidation(self, filePath):
+        ''' TODO: Validate given file path '''
+        return True
+
+    def __scoresCalculation(self, scores):
+        ''' TODO: Optimaze and generate a final score'''
         # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
         # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
         if np.argmax(scores) == 1:
