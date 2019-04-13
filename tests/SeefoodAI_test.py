@@ -12,8 +12,22 @@ def test_process():
 def test_pathValidation():
     ''' TODO: Test the Validation unit '''
     current = SeefoodAI()
-    pathState = current.pathValidation("iSeefood/samples/cookies.png")
-    assert pathState == True, "Validation Test"
+    ''' Pass an integar '''
+    pathState = current.pathValidation(10)
+    assert pathState == False, "Parameter type Test #1"
+
+    ''' Pass a string '''
+    pathState = current.pathValidation("sample/cookies.png")
+    assert pathState == True, "Parameter type Test #2"
+
+    ''' Pass empty '''
+    pathState = current.pathValidation("")
+    assert pathState == True, "Parameter type Test #2"
+
+    ''' Pass bool '''
+    pathState = current.pathValidation(True)
+    assert pathState == False, "Parameter type Test #2"
+
 
 def test_pathVerification():
     '''  TODO: Test the Verification unit '''
