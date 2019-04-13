@@ -89,7 +89,10 @@ class SeefoodAI(object):
 
     def pathValidation(self, filePath):
         ''' TODO: Validate given file path '''
-        return True
+        if isinstance(filePath, basestring):
+            return True
+        else:
+            return False
 
     def __scoresCalculation(self, scores):
         ''' TODO: Optimaze and generate a final score'''
