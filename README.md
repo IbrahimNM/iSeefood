@@ -6,7 +6,7 @@
 A python program that uses a trained AI to recognize food in images. 
 
 ## What Is This?
-
+  ..... 
 ## Prerequisites
   * Numpy
   * Tensorflow
