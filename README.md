@@ -1,6 +1,6 @@
 <a href="https://ibb.co/pzypKWQ"><img src="https://i.ibb.co/fpv7N89/New-Project-2.png" alt="New-Project-2" border="0"></a>
 
-[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood) [![codecov](https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X)](https://codecov.io/gh/IbrahimNM/iSeefood) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 
 A python program that uses a trained AI to recognize food in images. 
