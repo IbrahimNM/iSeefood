@@ -3,7 +3,7 @@ python:
   - "2.7"
 env:
   - CODECOV_TOKEN="ab8871f6-60b5-4e07-b55f-2ef1bd1e4f44"
-  install:
+install:
   - pip install -r requirements.txt
 script:
   - pytest --cov=./
