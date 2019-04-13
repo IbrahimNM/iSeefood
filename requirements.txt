@@ -11,3 +11,4 @@ pillow==5.4.1
 pytest==4.4.0
 codecov==2.0.15
 coverage==4.5.3
+pytest-cov==2.6.1

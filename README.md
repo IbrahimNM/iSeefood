@@ -20,8 +20,9 @@ A python program that uses a trained AI to recognize food in images.
 
 ## Built With
 
-* [Gradle](https://gradle.org/) - The building system used.
+* [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
 * [Travis CI](https://travis-ci.com/) - CI service.
+* [CodeFactor](https://www.codefactor.io) - Automated code review tool.
 
 ## Versioning
 
