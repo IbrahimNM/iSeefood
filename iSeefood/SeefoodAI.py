@@ -116,15 +116,18 @@ class SeefoodAI(object):
     def setScores(self, stat):
         ''' Allow the AI to set the score variable '''
         global scores
+        # BUG: scores accepts all data types!
         scores = stat
 
     def getScores(self):
         ''' Return last analyzed image stat. '''
         global scores
+        # BUG: getScores return scores when undefined!
         return scores
 
     def getResult(self, scores):
         ''' TODO: Optimaze and generate a final score'''
+        # BUG: getResult will return result when there's no result!
         # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
         # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
         if np.argmax(scores) == 1:
