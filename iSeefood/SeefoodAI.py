@@ -85,19 +85,17 @@ class SeefoodAI(object):
 
         # Run the image in the model.
         scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
-        self.setScores(scores) # Set score variable
-        print '+ Statistics: ', self.getScores()
-        # Calculate score and display result
-
+        # Update score variable
         self.setScores(scores)
-        print("_________ Analyzing image.... Done! __________")
+        
+        print("[--------------** Given Image Has Been Analyzed **----------------]")
 
     def validatePath(self, filePath):
         ''' TODO: Validate given file path '''
         if isinstance(filePath, basestring):  # Verify that instance is a string type & !empty.
             if self.checkFileExtension(filePath) and self.directoryExist(filePath):  # Verify path existance
                 print '+ Path validation ... '
-            # check if the path end with .png || .jpg
+            # check if given path ends with .png || .jpg
             return True
         else:
             return False
@@ -105,28 +103,31 @@ class SeefoodAI(object):
     def directoryExist(self, filePath):
         ''' Verify the existance of the given path '''
         if os.path.exists(filePath):
-            return True
-        return False
+            return True  # return true when file/directory exist
+        return False # retunr false otherwise 
 
     def checkFileExtension(self, filePath):
         ''' Verify that the given path points to an image file (png, jpg) '''
         if filePath.endswith('.png') or filePath.endswith('.jpg'):
-            return True
+            return True # return true if file is valide
         else:
-            return False
+            return False # return false otherwise
 
     def setScores(self, stat):
-        ''' TODO: Optimaze and generate a final score'''
+        ''' Allow the AI to set the score variable '''
         global scores
         scores = stat
-        # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
-        # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
-        if np.argmax(scores) == 1:
-            print "+ Result:  Oops! No food here... :( "
-        else:
-            print "+ Results: YAY! I see food! :)"
 
     def getScores(self):
         ''' Return last analyzed image stat. '''
         global scores
         return scores
+
+    def getResult(self, scores):
+        ''' TODO: Optimaze and generate a final score'''
+        # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
+        # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
+        if np.argmax(scores) == 1:
+            return "+ Result:  Oops! No food here... :("
+        else:
+            return "+ Result: YAY! I see food! :)"
