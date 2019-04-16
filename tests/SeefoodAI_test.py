@@ -43,7 +43,7 @@ def test_directoryExist():
     assert result == True, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
     
     # Invalid file path
-    result = current.directoryExist("/home/ibrahim/Desktop/iSeefood/iSeefood/samles/cookies.png")
+    result = current.directoryExist("samles/cookies.png")
     assert result == False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
     
 
