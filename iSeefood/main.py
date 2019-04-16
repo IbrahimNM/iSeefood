@@ -1,7 +1,7 @@
 from SeefoodAI import SeefoodAI
 import argparse
 import sys
-
+import numpy
 
 def main():
     print 'Hello friend, welcome to iSeefood AI sample... '
