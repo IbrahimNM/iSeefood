@@ -12,7 +12,8 @@ def main():
         
         print 'Enter image path: '
         current.process(getFilePath())
-           
+        print '+ Statistics: ', current.getScores()
+        print '+ Result: ', current.getResult(current.getScores())
     except IOError as e:
         print '** Please check file path! **'  
 """
