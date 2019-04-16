@@ -39,7 +39,7 @@ def test_directoryExist():
     ''' Expected: Only existed directories are accepted '''
     current = SeefoodAI.getInstance()
     # Valid file path
-    result = current.directoryExist("/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png")
+    result = current.directoryExist("samples/cookies.png")
     assert result == True, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
     
     # Invalid file path
