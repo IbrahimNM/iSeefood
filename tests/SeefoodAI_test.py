@@ -3,6 +3,7 @@
 
 '''
 import pytest
+import numpy
 from iSeefood.SeefoodAI import SeefoodAI
 
 
@@ -36,17 +37,40 @@ def test_validatePath():
 def test_directoryExist():
     ''' TODO: Test the directory existance checker unit '''
     ''' Expected: Only existed directories are accepted '''
-    assert True, "Directory existance Test"
-
+    current = SeefoodAI.getInstance()
+    # Valid file path
+    result = current.directoryExist("/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png")
+    assert result == True, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
+    
+    # Invalid file path
+    result = current.directoryExist("/home/ibrahim/Desktop/iSeefood/iSeefood/samles/cookies.png")
+    assert result == False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
+    
 
 def test_CheckFileExtension():
-    ''' TODO: Test file extension checker '''
+    ''' Test file extension checker '''
     ''' Expected: Only .png .jpg files are accepted '''
-    assert True, "File extension Test"
+    current = SeefoodAI.getInstance()
+    # Valid file ext. PNG
+    result = current.checkFileExtension("image.png")
+    assert result == True, "PNG file extention test"
+    # Valid file ext. JPG
+    result = current.checkFileExtension("image.jpg")
+    assert result == True, "JPG file extention test"
+    # Invalid file ext. NO EXT.
+    result = current.checkFileExtension("image")
+    assert result == False, "None file extention test"
+    # Invalid file ext. Empty 
+    result = current.checkFileExtension("")
+    assert result == False, "Empty file test"
+    
 
 
 def test_setScore():
     ''' TODO: Test setting stat scores unit'''
+    ''' FIXME: Check what type of data I should receive?
+               print type(current.getScores()) is numpy.ndarray
+    '''
     assert True, "Set statistics score Test"
 
 
