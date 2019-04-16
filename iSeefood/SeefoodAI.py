@@ -71,7 +71,7 @@ class SeefoodAI(object):
     def process(self, image_path):
         '''TODO: Accept file path '''
 
-        if not self.pathValidation(image_path):  # Validate given path.
+        if not self.validatePath(image_path):  # Validate given path.
             return -1
 
         global sess, class_scores, x_input, keep_prob
@@ -85,14 +85,14 @@ class SeefoodAI(object):
 
         # Run the image in the model.
         scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
-        self.__setScores(scores) # Set score variable
+        self.setScores(scores) # Set score variable
         print '+ Statistics: ', self.getScores()
         # Calculate score and display result
 
-        self.__setScores(scores)
+        self.setScores(scores)
         print("_________ Analyzing image.... Done! __________")
 
-    def pathValidation(self, filePath):
+    def validatePath(self, filePath):
         ''' TODO: Validate given file path '''
         if isinstance(filePath, basestring):  # Verify that instance is a string type & !empty.
             if self.checkFileExtension(filePath) and self.directoryExist(filePath):  # Verify path existance
@@ -115,7 +115,7 @@ class SeefoodAI(object):
         else:
             return False
 
-    def __setScores(self, stat):
+    def setScores(self, stat):
         ''' TODO: Optimaze and generate a final score'''
         global scores
         scores = stat
