@@ -40,7 +40,7 @@ def test_directoryExist():
     current = SeefoodAI.getInstance()
     # Valid file path
     result = current.directoryExist("samples/cookies.png")
-    assert result == True, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
+    assert result == True, "iSeefood/iSeefood/samples/cookies.png directory exists"
     
     # Invalid file path
     result = current.directoryExist("samles/cookies.png")
@@ -63,11 +63,10 @@ def test_CheckFileExtension():
     # Invalid file ext. Empty 
     result = current.checkFileExtension("")
     assert result == False, "Empty file test"
-    
-
 
 def test_setScore():
-    ''' TODO: Test setting stat scores unit'''
+    ''' TODO: Test setting stat scores unit '''
+    current = SeefoodAI.getInstance()
     ''' FIXME: Check what type of data I should receive?
                print type(current.getScores()) is numpy.ndarray
     '''
@@ -76,4 +75,8 @@ def test_setScore():
 
 def test_getScore():
     ''' TODO: Test getting the score unit '''
-    assert True, "Get latest stat. score Test "
+    current = SeefoodAI.getInstance()
+
+    result = current.getScores()
+    assert result == None, "Score is none!"
+    #assert True, "Get latest stat. score Test "
