@@ -19,19 +19,19 @@ def test_validatePath():
     
     ''' Pass an integar '''
     pathState = current.validatePath(10)
-    assert pathState == False, "Parameter type Test #1"
+    assert pathState is False, "Parameter type Test #1"
 
     ''' Pass a string '''
     pathState = current.validatePath("sample/cookies.png")
-    assert pathState == True, "Parameter type Test #2"
+    assert pathState is True, "Parameter type Test #2"
 
     ''' Pass empty '''
     pathState = current.validatePath("")
-    assert pathState == True, "Parameter type Test #2"
+    assert pathState is True, "Parameter type Test #2"
 
     ''' Pass bool '''
     pathState = current.validatePath(True)
-    assert pathState == False, "Parameter type Test #2"
+    assert pathState is False, "Parameter type Test #2"
 
 
 def test_directoryExist():
@@ -40,11 +40,11 @@ def test_directoryExist():
     current = SeefoodAI.getInstance()
     # Valid file path
     result = current.directoryExist("samples/cookies.png")
-    assert result == True, "iSeefood/iSeefood/samples/cookies.png directory exists"
+    assert result is True, "iSeefood/iSeefood/samples/cookies.png directory exists"
     
     # Invalid file path
     result = current.directoryExist("samles/cookies.png")
-    assert result == False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
+    assert result is False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
     
 
 def test_CheckFileExtension():
@@ -53,16 +53,16 @@ def test_CheckFileExtension():
     current = SeefoodAI.getInstance()
     # Valid file ext. PNG
     result = current.checkFileExtension("image.png")
-    assert result == True, "PNG file extention test"
+    assert result is True, "PNG file extention test"
     # Valid file ext. JPG
     result = current.checkFileExtension("image.jpg")
-    assert result == True, "JPG file extention test"
+    assert result is True, "JPG file extention test"
     # Invalid file ext. NO EXT.
     result = current.checkFileExtension("image")
-    assert result == False, "None file extention test"
+    assert result is False, "None file extention test"
     # Invalid file ext. Empty 
     result = current.checkFileExtension("")
-    assert result == False, "Empty file test"
+    assert result is False, "Empty file test"
 
 def test_setScore():
     ''' TODO: Test setting stat scores unit '''
@@ -78,5 +78,5 @@ def test_getScore():
     current = SeefoodAI.getInstance()
 
     result = current.getScores()
-    assert result == None, "Score is none!"
+    assert result is None, "Score is none!"
     #assert True, "Get latest stat. score Test "
