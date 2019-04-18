@@ -123,7 +123,11 @@ class SeefoodAI(object):
         ''' Return last analyzed image stat. '''
         global scores
         # BUG: getScores return scores when undefined!
-        return scores
+        try:
+            return scores
+        except NameError as ne:
+            print ne 
+            return None
 
     def getResult(self, scores):
         ''' TODO: Optimaze and generate a final score'''
