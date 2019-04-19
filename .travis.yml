@@ -10,5 +10,6 @@ script:
 before_script: 
   - cd $TRAVIS_BUILD_DIR/iSeefood/
   - git lfs pull
+  - ls -alh
 after_success:
   - codecov --token=ab8871f6-60b5-4e07-b55f-2ef1bd1e4f44
