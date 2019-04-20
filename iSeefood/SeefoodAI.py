@@ -23,12 +23,14 @@ from PIL import Image
 import os
 import logging
 
+global sess, class_scores, x_input, keep_prob, scores
+sess = class_scores = x_input = keep_prob = scores = None
+
 class SeefoodAI(object):
     # Single private instance
     __instance = None
     # Initilize global variables.
-    global sess, class_scores, x_input, keep_prob, scores
-    sess = class_scores = x_input = keep_prob = scores = None
+    
 
     # Initilize an AI object to be running
     def __init__(self):
