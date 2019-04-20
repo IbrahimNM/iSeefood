@@ -21,7 +21,7 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import os
-
+import logging
 
 class SeefoodAI(object):
     # Single private instance
@@ -37,7 +37,7 @@ class SeefoodAI(object):
         else:
             SeefoodAI.__instance = self
             SeefoodAI.__instance.__setup()
-        print "+ Seefood AI instance has been created!"
+        # Seefood AI instance has been created!
 
     @staticmethod
     def getInstance():
@@ -49,7 +49,6 @@ class SeefoodAI(object):
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
         # try initializing the AI instance attrs, catch possible errors.
-        # TODO: Make it pretty :)
         global sess, class_scores, x_input, keep_prob
 
         try:
@@ -62,11 +61,9 @@ class SeefoodAI(object):
             keep_prob = graph.get_tensor_by_name('Placeholder:0')
             class_scores = graph.get_tensor_by_name("fc8/fc8:0")
         except:
-            print '------ [An error occured during initialization] -----'
-        else:
-            print '++++++ [No errors occured during initialization +++++'
+            logging.info("SETUP EXCEPTION")
 
-        print("+ Setting up instance ....")
+        # Instance has been configured 
 
     def process(self, image_path):
         '''TODO: Accept file path '''
@@ -91,14 +88,13 @@ class SeefoodAI(object):
         print("[--------------** Given Image Has Been Analyzed **----------------]")
 
     def validatePath(self, filePath):
-        ''' TODO: Validate given file path '''
+        ''' Validate given file path '''
         if isinstance(filePath, basestring):  # Verify that instance is a string type & !empty.
             if self.checkFileExtension(filePath) and self.directoryExist(filePath):  # Verify path existance
-                print '+ Path validation ... '
-            # check if given path ends with .png || .jpg
-            return True
-        else:
-            return False
+                print 'Good'
+                return True # check if given path ends with .png || .jpg
+        
+        return False
 
     def directoryExist(self, filePath):
         ''' Verify the existance of the given path '''
@@ -110,8 +106,7 @@ class SeefoodAI(object):
         ''' Verify that the given path points to an image file (png, jpg) '''
         if filePath.endswith('.png') or filePath.endswith('.jpg'):
             return True # return true if file is valide
-        else:
-            return False # return false otherwise
+        return False # return false otherwise
 
     def setScores(self, stat):
         ''' Allow the AI to set the score variable '''
