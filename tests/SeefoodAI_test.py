@@ -5,6 +5,7 @@
 import pytest
 import numpy
 from iSeefood.SeefoodAI import SeefoodAI
+import os
 
 SCOPE = "function"
 
@@ -37,7 +38,7 @@ def test_validatePath2(shared_instance):
 
 
 def test_validatePath3(shared_instance):
-    ''' Pass empty '''
+    ''' Pass empty path'''
     pathState = shared_instance.validatePath("")
     assert pathState is True, "Parameter type Test #2"
 
@@ -51,10 +52,11 @@ def test_validatePath4(shared_instance):
 def test_directoryExist(shared_instance):
     ''' TODO: Test the directory existance checker unit '''
     ''' Expected: Only existed directories are accepted '''
-
+    # get current working directory 
+    cwd = os.getcwd()
     # Valid file path
-    result = shared_instance.directoryExist("samples/cookies.png")
-    assert result is True, "samples/cookies.png directory exists"
+    result = shared_instance.directoryExist(cwd+"/iSeefood/samples/cookies.png")
+    assert result is True, cwd + "/samples/cookies.png directory exists"
 
     # Invalid file path
     result = shared_instance.directoryExist("samles/cookies.png")
