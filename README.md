@@ -1,15 +1,20 @@
-# iSeefood
-[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood)
+
+<p align="center">
+  <img src="https://i.ibb.co/5vrHn2B/i-Seefood-Readme.jpg">
+</p>
+
+[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood) [![codecov](https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X)](https://codecov.io/gh/IbrahimNM/iSeefood) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 
 A python program that uses a trained AI to recognize food in images. 
 
-What Is This?
--------------
-...... etc
-
-How To Use This
----------------
-
+## What Is This?
+  ..... 
+## Prerequisites
+  * Numpy
+  * Tensorflow
+  * Pillow 
+## How To Use This
 1. .... 
 2. ....
 3. ....
@@ -18,8 +23,9 @@ How To Use This
 
 ## Built With
 
-* [Gradle](https://gradle.org/) - The building system used.
+* [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
 * [Travis CI](https://travis-ci.com/) - CI service.
+* [CodeFactor](https://www.codefactor.io) - Automated code review tool.
 
 ## Versioning
 
