@@ -9,6 +9,9 @@ __pycache__/
 # Editor file
 .vscode/
 
+# mOS filesys conf. file
+.DS_Store
+
 # Distribution / packaging
 .Python
 build/
