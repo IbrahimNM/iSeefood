@@ -1,4 +1,7 @@
-<a href="https://ibb.co/P4cH9tw"><img src="https://i.ibb.co/5vrHn2B/i-Seefood-Readme.jpg" align="center" alt="i-Seefood-Readme" border="0"></a>
+
+<p align="center">
+  <img src="https://i.ibb.co/5vrHn2B/i-Seefood-Readme.jpg">
+</p>
 
 [![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood) [![codecov](https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X)](https://codecov.io/gh/IbrahimNM/iSeefood) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
