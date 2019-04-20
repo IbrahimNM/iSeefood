@@ -63,8 +63,8 @@ class SeefoodAI(object):
             self.x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
             self.keep_prob = graph.get_tensor_by_name('Placeholder:0')
             self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
-        except:
-            logging.info("SETUP EXCEPTION")
+        except IOError as e:
+            print "--- Error: Trained model files cannot be found. Please check README file for info. ---"
 
         # Instance has been configured 
 
@@ -82,12 +82,12 @@ class SeefoodAI(object):
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
 
-        # Run the image in the model.
-        stat = self.sess.run(self.class_scores, {self.x_input: img_tensor, self.keep_prob: 1.})
-        # Update score variable
-        self.setScores(stat)
-        
-        print("[--------------** Given Image Has Been Analyzed **----------------]")
+        if self.class_scores is not None:
+            # Run the image in the model.
+            stat = self.sess.run(self.class_scores, {self.x_input: img_tensor, self.keep_prob: 1.})
+            # Update score variable
+            self.setScores(stat)
+            print("[--------------** Given Image Has Been Analyzed **----------------]")
 
     def validatePath(self, filePath):
         ''' Validate given file path '''
@@ -118,12 +118,8 @@ class SeefoodAI(object):
     def getScores(self):
         ''' Return last analyzed image stat. '''
         
-        # BUG: getScores return scores when undefined!
-        try:
-            return self.scores
-        except NameError as ne:
-            print ne 
-            return None
+        return self.scores
+        
 
     def getResult(self, scores):
         ''' TODO: Optimaze and generate a final score'''
