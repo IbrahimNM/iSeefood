@@ -23,8 +23,7 @@ from PIL import Image
 import os
 import logging
 
-global sess, class_scores, x_input, keep_prob, scores
-sess = class_scores = x_input = keep_prob = scores = None
+
 
 class SeefoodAI(object):
     # Single private instance
@@ -39,6 +38,8 @@ class SeefoodAI(object):
             raise Exception("This class is a Signleton!")
         else:
             SeefoodAI.__instance = self
+            self.sess = self.class_scores = self.x_input = self.keep_prob = None
+            self.scores = 0
             SeefoodAI.__instance.__setup()
         # Seefood AI instance has been created!
 
@@ -52,17 +53,16 @@ class SeefoodAI(object):
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
         # try initializing the AI instance attrs, catch possible errors.
-        global sess, class_scores, x_input, keep_prob
-
+        
         try:
-            sess = tf.Session()
+            self.sess = tf.Session()
             saver = tf.train.import_meta_graph(
                 'saved_model/model_epoch5.ckpt.meta')
-            saver.restore(sess, tf.train.latest_checkpoint('saved_model/'))
+            saver.restore(self.sess, tf.train.latest_checkpoint('saved_model/'))
             graph = tf.get_default_graph()
-            x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
-            keep_prob = graph.get_tensor_by_name('Placeholder:0')
-            class_scores = graph.get_tensor_by_name("fc8/fc8:0")
+            self.x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
+            self.keep_prob = graph.get_tensor_by_name('Placeholder:0')
+            self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
         except:
             logging.info("SETUP EXCEPTION")
 
@@ -74,7 +74,6 @@ class SeefoodAI(object):
         if not self.validatePath(image_path):  # Validate given path.
             return -1
 
-        global sess, class_scores, x_input, keep_prob
         # Open passed image, then convert it to RGB
         image = Image.open(image_path).convert('RGB')
         # Resize image to 227x227
@@ -84,9 +83,9 @@ class SeefoodAI(object):
         print '+ Looking for food in ' + image_path + ' ...... '
 
         # Run the image in the model.
-        scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
+        stat = self.sess.run(self.class_scores, {self.x_input: img_tensor, self.keep_prob: 1.})
         # Update score variable
-        self.setScores(scores)
+        self.setScores(stat)
         
         print("[--------------** Given Image Has Been Analyzed **----------------]")
 
@@ -113,16 +112,15 @@ class SeefoodAI(object):
 
     def setScores(self, stat):
         ''' Allow the AI to set the score variable '''
-        global scores
         # BUG: scores accepts all data types!
-        scores = stat
+        self.scores = stat
 
     def getScores(self):
         ''' Return last analyzed image stat. '''
-        global scores
+        
         # BUG: getScores return scores when undefined!
         try:
-            return scores
+            return self.scores
         except NameError as ne:
             print ne 
             return None
