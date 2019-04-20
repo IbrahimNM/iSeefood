@@ -96,7 +96,7 @@ def test_getScores1(shared_instance):
     ''' TEST CASE: Getting the score unit w/o setting the score'''
     # Get scores
     result = shared_instance.getScores()
-    assert result is None, "Score is none!"
+    assert result == 0, "Score is none!"
 
 
 def test_getScores2(shared_instance):
