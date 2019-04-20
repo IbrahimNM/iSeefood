@@ -52,11 +52,12 @@ def test_validatePath4(shared_instance):
 def test_directoryExist(shared_instance):
     ''' TODO: Test the directory existance checker unit '''
     ''' Expected: Only existed directories are accepted '''
-    # get current working directory 
+    # get current working directory
     cwd = os.getcwd()
     # Valid file path
-    result = shared_instance.directoryExist(cwd+"/iSeefood/samples/cookies.png")
-    assert result is True, cwd + "/samples/cookies.png directory exists"
+    result = shared_instance.directoryExist(
+        cwd+"/iSeefood/samples/cookies.png")
+    assert result is True, cwd + "/iSeefodd/samples/cookies.png directory exists"
 
     # Invalid file path
     result = shared_instance.directoryExist("samles/cookies.png")
@@ -90,7 +91,19 @@ def test_setScore(shared_instance):
     assert True, "Set statistics score Test"
 
 
-def test_getScore(shared_instance):
-    ''' TODO: Test getting the score unit '''
+def test_getScores1(shared_instance):
+    ''' TEST CASE: Getting the score unit w/o setting the score'''
+    # Get scores
     result = shared_instance.getScores()
     assert result is None, "Score is none!"
+
+
+def test_getScores2(shared_instance):
+    ''' TEST CASE: getting the score unit w/ setting the score 
+        w/ a valid data type'''
+    # Set score value to a correct data type (numpy.ndarray).
+    shared_instance.setScores(numpy.array([[1, 2], [3, 4]]))
+    # Get score.
+    result = shared_instance.getScores()
+    # Check that returned value is of type nm.ndarray.
+    assert type(result) is numpy.ndarray, "Get score returned valid data type."
