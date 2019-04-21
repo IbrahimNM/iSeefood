@@ -39,8 +39,10 @@ A python program that uses a trained AI to recognize food in images.
 ## Built With
 
 * [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
+* [Pytest](https://docs.pytest.org/) - Testing framework.
 * [Travis CI](https://travis-ci.com/) - CI service.
 * [CodeFactor](https://www.codefactor.io) - Automated code review tool.
+* [Codecov](https://codecov.io/) - A code coverage measurement tool   
 
 ## Versioning
 
