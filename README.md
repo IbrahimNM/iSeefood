@@ -3,7 +3,22 @@
   <img src="https://i.ibb.co/5vrHn2B/i-Seefood-Readme.jpg">
 </p>
 
-[![Build Status](https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master)](https://travis-ci.com/IbrahimNM/iSeefood) [![CodeFactor](https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge)](https://www.codefactor.io/repository/github/ibrahimnm/iseefood) [![codecov](https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X)](https://codecov.io/gh/IbrahimNM/iSeefood) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+<p align="center">
+   <a href="https://travis-ci.com/IbrahimNM/iSeefood" alt="Contributors">
+        <img src="https://travis-ci.com/IbrahimNM/iSeefood.svg?token=Z7DztJ4D33ytYAbsRtvx&branch=master" /></a>
+  <a href="https://www.codefactor.io/repository/github/ibrahimnm/iseefood" alt="Contributors">
+        <img src="https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge" /></a>
+  <a href="https://codecov.io/gh/IbrahimNM/iSeefood" alt="Contributors">
+        <img src="https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X" /></a>
+  <a href="https://opensource.org/licenses/mit-license.php" alt="Contributors">
+        <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" /></a>
+  <a href="https://www.tensorflow.org/" alt="Contributors">
+        <img src="https://github.com/aleen42/badges/blob/master/src/tensorflow.svg" /></a>
+  <a href="https://github.com/" alt="Contributors">
+        <img src="https://aleen42.github.io/badges/src/github.svg" /></a>
+</p>
+  
+
 
 
 A python program that uses a trained AI to recognize food in images. 
