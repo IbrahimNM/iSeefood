@@ -42,11 +42,11 @@ def test_process3(shared_instance):
     assert test is False, "Process3: Invalid image path to be processed."
 
 
-def test_process3(shared_instance):
+def test_process4(shared_instance):
     ''' TEST CASE: Pass invalid file-type to be processed'''
     cwd = os.getcwd()
     test = shared_instance.process(cwd+"/iSeefood/samples/cookies.gif")
-    assert test is False, "Process3: Invalid image path to be processed."
+    assert test is False, "Process4: Invalid image path to be processed."
 
 
 ''' Test the Validation unit '''
