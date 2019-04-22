@@ -56,12 +56,19 @@ class SeefoodAI(object):
         
         try:
             self.sess = tf.Session()
+            print '1'
+            cwd = os.getcwd()
+            print cwd
             saver = tf.train.import_meta_graph(
-                'saved_model/model_epoch5.ckpt.meta')
-            saver.restore(self.sess, tf.train.latest_checkpoint('saved_model/'))
+                cwd+'/iSeefood/saved_model/model_epoch5.ckpt.meta')
+            saver.restore(self.sess, tf.train.latest_checkpoint(cwd+'/iSeefood/saved_model/'))
+            print '2'
             graph = tf.get_default_graph()
+            print '2'
             self.x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
+            print '3'
             self.keep_prob = graph.get_tensor_by_name('Placeholder:0')
+            print '4'
             self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
         except IOError as e:
             print "--- Error: Trained model files cannot be found. Please check README file for info. ---"
@@ -69,10 +76,10 @@ class SeefoodAI(object):
         # Instance has been configured 
 
     def process(self, image_path):
-        '''TODO: Accept file path '''
+        ''' Process valid, existed file'''
 
         if not self.validatePath(image_path):  # Validate given path.
-            return -1
+            return False
 
         # Open passed image, then convert it to RGB
         image = Image.open(image_path).convert('RGB')
@@ -81,13 +88,19 @@ class SeefoodAI(object):
         # Create a tensor
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
-
+        
+        # FIXME: Reduce number of conditional statments.
         if self.class_scores is not None:
             # Run the image in the model.
             stat = self.sess.run(self.class_scores, {self.x_input: img_tensor, self.keep_prob: 1.})
             # Update score variable
+            # BUG: Scores shall reset to == 0, whenever a new image is process.
             self.setScores(stat)
             print("[--------------** Given Image Has Been Analyzed **----------------]")
+            # return true when an image is processed.
+            return True
+        
+        
 
     def validatePath(self, filePath):
         ''' Validate given file path '''
