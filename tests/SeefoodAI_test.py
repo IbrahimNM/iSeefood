@@ -16,9 +16,37 @@ def shared_instance():
     yield current
 
 
-def test_process():
-    ''' TODO: Test the image processing unit '''
-    assert True, "Image Submition Test"
+''' Test the Process unit '''
+''' Expected: only accepts valid file type & path '''
+
+
+def test_process1(shared_instance):
+    ''' TEST CASE: Pass valid file-type-path to be processed'''
+    cwd = os.getcwd()  # get current-working-directory
+    # FIXME: assure that setScore() clears out after each process.
+    #test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
+    #assert test is True, "Process1: Valid image to be processed."
+
+
+def test_process2(shared_instance):
+    ''' TEST CASE: Pass invalid file-type-path to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/invalid/samples/path.pg")
+    assert test is False, "Process2: Invalid image path/type to be processed."
+
+
+def test_process3(shared_instance):
+    ''' TEST CASE: Pass non-existed file-path to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/anywhere/file.png")
+    assert test is False, "Process3: Invalid image path to be processed."
+
+
+def test_process3(shared_instance):
+    ''' TEST CASE: Pass invalid file-type to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.gif")
+    assert test is False, "Process3: Invalid image path to be processed."
 
 
 ''' Test the Validation unit '''
@@ -34,7 +62,8 @@ def test_validatePath1(shared_instance):
 def test_validatePath2(shared_instance):
     ''' Pass a string '''
     cwd = os.getcwd()
-    pathState = shared_instance.validatePath(cwd+"/iSeefood/samples/cookies.png")
+    pathState = shared_instance.validatePath(
+        cwd+"/iSeefood/samples/cookies.png")
     assert pathState is True, "Parameter type Test #2"
 
 
@@ -49,6 +78,9 @@ def test_validatePath4(shared_instance):
     pathState = shared_instance.validatePath(True)
     assert pathState is False, "Parameter type Test #2"
 
+
+''' Test the helper units '''
+''' Expected: only accepts a non empty string'''
 
 def test_directoryExist(shared_instance):
     ''' TODO: Test the directory existance checker unit '''
