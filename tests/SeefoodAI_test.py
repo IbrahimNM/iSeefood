@@ -139,4 +139,4 @@ def test_getScores2(shared_instance):
     # Get score.
     result = shared_instance.getScores()
     # Check that returned value is of type nm.ndarray.
-    assert type(result) is numpy.ndarray, "Get score returned valid data type."
+    assert isinstance(result, numpy.ndarray), "Get score returned valid data type."
