@@ -24,6 +24,12 @@
   * Numpy
   * Tensorflow
   * Pillow 
+  
+  - You can just run this command to install all required packages:
+  ```console
+  $ pip install -r requirements.txt
+  ```
+  
 ## How To Use This
 1. **Download**/ **Clone** the source code. 
   > **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
