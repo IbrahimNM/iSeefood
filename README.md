@@ -17,25 +17,80 @@
   <a href="https://github.com/" alt="Contributors">
         <img src="https://aleen42.github.io/badges/src/github.svg" /></a>
 </p>
-  
-
-
-
-A python program that uses a trained AI to recognize food in images. 
 
 ## What Is This?
-  ..... 
+  A python module to recognize the existence of food in images by using a trained AI. 
 ## Prerequisites
   * Numpy
   * Tensorflow
   * Pillow 
 ## How To Use This
-1. .... 
-2. ....
-3. ....
-
+1. **Download**/ **Clone** the source code. 
+  > **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
+  
+You can download the saved_model files:
+  1. Manualy through the repository.
+  2. By running the following command:
+        
+      ```console
+      $ git lfs pull
+      ```
+2. **Copy** the *iSeefood* file to your project directory. 
+    
+    Recommended file structure:
+    ```bash
+    yourProject/
+    ├── iSeefood/
+    │   ├── README.md
+    │   ├── SeefoodAI.py
+    │   ├── __init__.py
+    │   ├── samples/
+    │   └── saved_model/
+    │       ├── checkpoint
+    │       ├── model_epoch5.ckpt.data-00000-of-00001
+    │       ├── model_epoch5.ckpt.index
+    │       └── model_epoch5.ckpt.meta
+    ├── __init__.py
+    └── main.py
+    ```
+    
+3. **Import** the package to your *main.py* file.
+    
+    ```python
+      from iSeefood import SeefoodAI
+    ```
+4. **Instantiate** a new object.
+    ```python
+      example = SeefoodAI()
+    ```
+5. **Pass** an image to be processed.
+    ```python
+      example.process('../image.png')
+    ```
+6. **Get** the processing statistics.
+    ```python
+      statistics = example.getScore()
+    ```
+7. **Evaluate** the statistics.
+    ```python
+      finalResult = example.evaluateScore(statistics)
+    ```
 ### Note
-
+  * SeefoodAI class **assumes** that the saved_models are stored in the following path:
+      ```bash
+      yourWorkingDirectory/iSeefood/saved_model/
+      ```
+  * If you try to run your project from any location other than the project-base-path, the SeefoodAI class **will not** be able to find the *saved_model* directory!
+  * If you would like to manipulate the directory location, you will have to update saved_models/ direcotry path inside the SeefoodAI.py class. The saved_models directory is specified inside the __setup() function. 
+    
+    ```python
+    def __setup(self):
+      ......
+      saver = tf.train.import_meta_graph(
+                'yourCustomizedPath/iSeefood/saved_model/model_epoch5.ckpt.meta')
+      saver.restore(self.sess, tf.train.latest_checkpoint('yourCustomizedPath/iSeefood/saved_model/'))
+      ......
+    ```
 ## Built With
 
 * [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
