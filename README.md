@@ -32,15 +32,16 @@
   
 ## How To Use This
 1. **Download**/ **Clone** the source code. 
-  > **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
+   
+   **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
   
-You can download the saved_model files:
-  1. Manualy through the repository.
-  2. By running the following command:
-        
-      ```console
-      $ git lfs pull
-      ```
+    You can download the saved_model files:
+      1. Manualy through the repository.
+      2. By running the following command:
+
+          ```console
+          $ git lfs pull
+          ```
 2. **Copy** the *iSeefood* file to your project directory. 
     
     Recommended file structure:
@@ -81,7 +82,7 @@ You can download the saved_model files:
     ```python
       finalResult = example.evaluateScore(statistics)
     ```
-### Note
+### :warning: Notes
   * SeefoodAI class **assumes** that the saved_models are stored in the following path:
       ```bash
       yourWorkingDirectory/iSeefood/saved_model/
