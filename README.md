@@ -21,11 +21,14 @@
 ## What Is This?
   A python module to recognize the existence of food in images by using a trained AI. 
 ## Prerequisites
+In order to run the iSeefood module, you need to install the following packages: 
   * Numpy
   * Tensorflow
   * Pillow 
+  * Nose
+  * Tornado
   
-  - You can just run this command to install all required packages:
+  - You can just run the following command to install all required packages:
   ```console
   $ pip install -r requirements.txt
   ```
