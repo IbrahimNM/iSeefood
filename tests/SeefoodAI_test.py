@@ -16,9 +16,37 @@ def shared_instance():
     yield current
 
 
-def test_process():
-    ''' TODO: Test the image processing unit '''
-    assert True, "Image Submition Test"
+''' Test the Process unit '''
+''' Expected: only accepts valid file type & path '''
+
+
+def test_process1(shared_instance):
+    ''' TEST CASE: Pass valid file-type-path to be processed'''
+    cwd = os.getcwd()  # get current-working-directory
+    # FIXME: assure that setScore() clears out after each process.
+    #test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
+    #assert test is True, "Process1: Valid image to be processed."
+
+
+def test_process2(shared_instance):
+    ''' TEST CASE: Pass invalid file-type-path to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/invalid/samples/path.pg")
+    assert test is False, "Process2: Invalid image path/type to be processed."
+
+
+def test_process3(shared_instance):
+    ''' TEST CASE: Pass non-existed file-path to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/anywhere/file.png")
+    assert test is False, "Process3: Invalid image path to be processed."
+
+
+def test_process4(shared_instance):
+    ''' TEST CASE: Pass invalid file-type to be processed'''
+    cwd = os.getcwd()
+    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.gif")
+    assert test is False, "Process4: Invalid image path to be processed."
 
 
 ''' Test the Validation unit '''
@@ -33,14 +61,16 @@ def test_validatePath1(shared_instance):
 
 def test_validatePath2(shared_instance):
     ''' Pass a string '''
-    pathState = shared_instance.validatePath("sample/cookies.png")
+    cwd = os.getcwd()
+    pathState = shared_instance.validatePath(
+        cwd+"/iSeefood/samples/cookies.png")
     assert pathState is True, "Parameter type Test #2"
 
 
 def test_validatePath3(shared_instance):
     ''' Pass empty path'''
     pathState = shared_instance.validatePath("")
-    assert pathState is True, "Parameter type Test #2"
+    assert pathState is False, "Parameter type Test #2"
 
 
 def test_validatePath4(shared_instance):
@@ -49,14 +79,18 @@ def test_validatePath4(shared_instance):
     assert pathState is False, "Parameter type Test #2"
 
 
+''' Test the helper units '''
+''' Expected: only accepts a non empty string'''
+
 def test_directoryExist(shared_instance):
     ''' TODO: Test the directory existance checker unit '''
     ''' Expected: Only existed directories are accepted '''
-    # get current working directory 
+    # get current working directory
     cwd = os.getcwd()
     # Valid file path
-    result = shared_instance.directoryExist(cwd+"/iSeefood/samples/cookies.png")
-    assert result is True, cwd + "/samples/cookies.png directory exists"
+    result = shared_instance.directoryExist(
+        cwd+"/iSeefood/samples/cookies.png")
+    assert result is True, cwd + "/iSeefodd/samples/cookies.png directory exists"
 
     # Invalid file path
     result = shared_instance.directoryExist("samles/cookies.png")
@@ -90,7 +124,19 @@ def test_setScore(shared_instance):
     assert True, "Set statistics score Test"
 
 
-def test_getScore(shared_instance):
-    ''' TODO: Test getting the score unit '''
+def test_getScores1(shared_instance):
+    ''' TEST CASE: Getting the score unit w/o setting the score'''
+    # Get scores
     result = shared_instance.getScores()
-    assert result is None, "Score is none!"
+    assert result == 0, "Score is none!"
+
+
+def test_getScores2(shared_instance):
+    ''' TEST CASE: getting the score unit w/ setting the score 
+        w/ a valid data type'''
+    # Set score value to a correct data type (numpy.ndarray).
+    shared_instance.setScores(numpy.array([[1, 2], [3, 4]]))
+    # Get score.
+    result = shared_instance.getScores()
+    # Check that returned value is of type nm.ndarray.
+    assert isinstance(result, numpy.ndarray), "Get score returned valid data type."

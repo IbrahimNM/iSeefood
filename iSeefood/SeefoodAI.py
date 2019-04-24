@@ -21,13 +21,15 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import os
+import logging
+
 
 
 class SeefoodAI(object):
     # Single private instance
     __instance = None
     # Initilize global variables.
-    global sess, class_scores, x_input, keep_prob, scores
+    
 
     # Initilize an AI object to be running
     def __init__(self):
@@ -36,8 +38,10 @@ class SeefoodAI(object):
             raise Exception("This class is a Signleton!")
         else:
             SeefoodAI.__instance = self
+            self.sess = self.class_scores = self.x_input = self.keep_prob = None
+            self.scores = 0
             SeefoodAI.__instance.__setup()
-        print "+ Seefood AI instance has been created!"
+        # Seefood AI instance has been created!
 
     @staticmethod
     def getInstance():
@@ -49,32 +53,34 @@ class SeefoodAI(object):
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
         # try initializing the AI instance attrs, catch possible errors.
-        # TODO: Make it pretty :)
-        global sess, class_scores, x_input, keep_prob
-
+        
         try:
-            sess = tf.Session()
+            self.sess = tf.Session()
+            print '1'
+            cwd = os.getcwd()
+            print cwd
             saver = tf.train.import_meta_graph(
-                'saved_model/model_epoch5.ckpt.meta')
-            saver.restore(sess, tf.train.latest_checkpoint('saved_model/'))
+                cwd+'/iSeefood/saved_model/model_epoch5.ckpt.meta')
+            saver.restore(self.sess, tf.train.latest_checkpoint(cwd+'/iSeefood/saved_model/'))
+            print '2'
             graph = tf.get_default_graph()
-            x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
-            keep_prob = graph.get_tensor_by_name('Placeholder:0')
-            class_scores = graph.get_tensor_by_name("fc8/fc8:0")
-        except:
-            print '------ [An error occured during initialization] -----'
-        else:
-            print '++++++ [No errors occured during initialization +++++'
+            print '2'
+            self.x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
+            print '3'
+            self.keep_prob = graph.get_tensor_by_name('Placeholder:0')
+            print '4'
+            self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
+        except IOError as e:
+            print "--- Error: Trained model files cannot be found. Please check README file for info. ---"
 
-        print("+ Setting up instance ....")
+        # Instance has been configured 
 
     def process(self, image_path):
-        '''TODO: Accept file path '''
+        ''' Process valid, existed file'''
 
         if not self.validatePath(image_path):  # Validate given path.
-            return -1
+            return False
 
-        global sess, class_scores, x_input, keep_prob
         # Open passed image, then convert it to RGB
         image = Image.open(image_path).convert('RGB')
         # Resize image to 227x227
@@ -82,23 +88,28 @@ class SeefoodAI(object):
         # Create a tensor
         img_tensor = [np.asarray(image, dtype=np.float32)]
         print '+ Looking for food in ' + image_path + ' ...... '
-
-        # Run the image in the model.
-        scores = sess.run(class_scores, {x_input: img_tensor, keep_prob: 1.})
-        # Update score variable
-        self.setScores(scores)
         
-        print("[--------------** Given Image Has Been Analyzed **----------------]")
+        # FIXME: Reduce number of conditional statments.
+        if self.class_scores is not None:
+            # Run the image in the model.
+            stat = self.sess.run(self.class_scores, {self.x_input: img_tensor, self.keep_prob: 1.})
+            # Update score variable
+            # BUG: Scores shall reset to == 0, whenever a new image is process.
+            self.setScores(stat)
+            print("[--------------** Given Image Has Been Analyzed **----------------]")
+            # return true when an image is processed.
+            return True
+        
+        
 
     def validatePath(self, filePath):
-        ''' TODO: Validate given file path '''
+        ''' Validate given file path '''
         if isinstance(filePath, basestring):  # Verify that instance is a string type & !empty.
             if self.checkFileExtension(filePath) and self.directoryExist(filePath):  # Verify path existance
-                print '+ Path validation ... '
-            # check if given path ends with .png || .jpg
-            return True
-        else:
-            return False
+                print 'Good'
+                return True # check if given path ends with .png || .jpg
+        
+        return False
 
     def directoryExist(self, filePath):
         ''' Verify the existance of the given path '''
@@ -110,24 +121,18 @@ class SeefoodAI(object):
         ''' Verify that the given path points to an image file (png, jpg) '''
         if filePath.endswith('.png') or filePath.endswith('.jpg'):
             return True # return true if file is valide
-        else:
-            return False # return false otherwise
+        return False # return false otherwise
 
     def setScores(self, stat):
         ''' Allow the AI to set the score variable '''
-        global scores
         # BUG: scores accepts all data types!
-        scores = stat
+        self.scores = stat
 
     def getScores(self):
         ''' Return last analyzed image stat. '''
-        global scores
-        # BUG: getScores return scores when undefined!
-        try:
-            return scores
-        except NameError as ne:
-            print ne 
-            return None
+        
+        return self.scores
+        
 
     def getResult(self, scores):
         ''' TODO: Optimaze and generate a final score'''

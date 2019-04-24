@@ -7,8 +7,6 @@ git:
   lfs_skip_smudge: false
 script:
   - pytest --cov=../ ../
-before_script: 
-  - git lfs pull
-  - ls -alh
+before_script: true
 after_success:
-  - codecov --token=ab8871f6-60b5-4e07-b55f-2ef1bd1e4f44
+  - codecov --token=$codecovReport
