@@ -73,7 +73,7 @@ In order to run the iSeefood module, you need to install the following packages:
     ```python
       example = SeefoodAI()
     ```
-5. **Pass** an image to be processed.
+5. **Pass** an image to be processed (.png and .jpg only).
     ```python
       example.process('../image.png')
     ```
@@ -83,8 +83,22 @@ In order to run the iSeefood module, you need to install the following packages:
     ```
 7. **Evaluate** the statistics.
     ```python
-      finalResult = example.evaluateScore(statistics)
+      result = example.getResult(statistics)
     ```
+### Example
+  ```python
+  from iSeefood.SeefoodAI import SeefoodAI
+
+  example = SeefoodAI()
+  example.process("/iSeefood/samples/cookies.png")
+  statistics = example.getScores()
+  result = example.getResult(statistics)
+  print  'Does the image contains food: ', result
+  ```
+  #### Output
+  ```bash
+  Does the image contains food:  True
+  ```
 ### :warning: Notes
   * SeefoodAI class **assumes** that the saved_models are stored in the following path:
       ```bash
