@@ -82,36 +82,36 @@ def test_validatePath4(shared_instance):
 ''' Test the helper units '''
 ''' Expected: only accepts a non empty string'''
 
-def test_directoryExist(shared_instance):
+def test_validateExistence(shared_instance):
     ''' TODO: Test the directory existance checker unit '''
     ''' Expected: Only existed directories are accepted '''
     # get current working directory
     cwd = os.getcwd()
     # Valid file path
-    result = shared_instance.directoryExist(
+    result = shared_instance.validateExistence(
         cwd+"/iSeefood/samples/cookies.png")
     assert result is True, cwd + "/iSeefodd/samples/cookies.png directory exists"
 
     # Invalid file path
-    result = shared_instance.directoryExist("samles/cookies.png")
+    result = shared_instance.validateExistence("samles/cookies.png")
     assert result is False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
 
 
-def test_CheckFileExtension(shared_instance):
+def test_validateExtension(shared_instance):
     ''' Test file extension checker '''
     ''' Expected: Only .png .jpg files are accepted '''
 
     # Valid file ext. PNG
-    result = shared_instance.checkFileExtension("image.png")
+    result = shared_instance.validateExtension("image.png")
     assert result is True, "PNG file extention test"
     # Valid file ext. JPG
-    result = shared_instance.checkFileExtension("image.jpg")
+    result = shared_instance.validateExtension("image.jpg")
     assert result is True, "JPG file extention test"
     # Invalid file ext. NO EXT.
-    result = shared_instance.checkFileExtension("image")
+    result = shared_instance.validateExtension("image")
     assert result is False, "None file extention test"
     # Invalid file ext. Empty
-    result = shared_instance.checkFileExtension("")
+    result = shared_instance.validateExtension("")
     assert result is False, "Empty file test"
 
 
