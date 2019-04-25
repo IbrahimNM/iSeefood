@@ -24,8 +24,8 @@ def test_process1(shared_instance):
     ''' TEST CASE: Pass valid file-type-path to be processed'''
     cwd = os.getcwd()  # get current-working-directory
     # FIXME: assure that setScore() clears out after each process.
-    #test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
-    #assert test is True, "Process1: Valid image to be processed."
+    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
+    assert test is True, "Process1: Valid image to be processed."
 
 
 def test_process2(shared_instance):
