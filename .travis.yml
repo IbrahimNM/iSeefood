@@ -8,6 +8,7 @@ script:
 before_script:
   - echo -e "machine ghttps://github.com/IbrahimNM/iSeefood  login $gitLfs" > ~/.netrc
   - git lfs checkout
+  - git lfs --version
   - git lfs pull
 after_success:
   - codecov --token=$codecovReport
