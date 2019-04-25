@@ -163,6 +163,4 @@ def test_getResult(shared_instance):
 def test_getResult1(shared_instance):
     cwd = os.getcwd()  # get current-working-directory
     test = shared_instance.process(cwd+"/iSeefood/samples/poodle.png") # run an image without food. 
-    lastStat = shared_instance.getScores()
-    assert test is True, "Score data type is valid."
-    #assert shared_instance.getResult(lastStat) is False, "I do not see food in image"
+    assert shared_instance.getResult(shared_instance.getScores()) is False, "I do not see food in image"
