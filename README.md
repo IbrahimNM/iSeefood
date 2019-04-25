@@ -73,7 +73,7 @@ In order to run the iSeefood module, you need to install the following packages:
     ```python
       example = SeefoodAI()
     ```
-5. **Pass** an image to be processed (.png and .jpg only).
+5. **Pass** an image to be processed (**.png and .jpg only**).
     ```python
       example.process('../image.png')
     ```
