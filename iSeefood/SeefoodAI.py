@@ -89,13 +89,13 @@ class SeefoodAI(object):
     def validatePath(self, filePath):
         ''' Validate given file path '''
         # Verify that instance is a string type & !empty && Verify path existance && given path ends with .png || .jpg.
-        return isinstance(filePath, basestring) and self.checkFileExtension(filePath) and self.directoryExist(filePath)
+        return isinstance(filePath, basestring) and self.validateExtension(filePath) and self.validateExistence(filePath)
 
-    def directoryExist(self, filePath):
+    def validateExistence(self, filePath):
         ''' Verify the existance of the given path '''
         return os.path.exists(filePath)  # retunr false otherwise
 
-    def checkFileExtension(self, filePath):
+    def validateExtension(self, filePath):
         ''' Verify that the given path points to an image file (png, jpg) '''
         if filePath.endswith('.png') or filePath.endswith('.jpg'):
             return True  # return true if file is valide
