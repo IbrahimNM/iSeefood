@@ -25,25 +25,26 @@ import os
 
 class SeefoodAI(object):
     # Single private instance
-    __instance = None
+    #__instance = None
 
     def __init__(self):
         ''' Virtually private constructor '''
-        if SeefoodAI.__instance != None:
-            raise Exception("This class is a Signleton!")
-        else:
-            SeefoodAI.__instance = self
-            self.sess = self.class_scores = self.x_input = self.keep_prob = None
-            self.scores = 0
-            SeefoodAI.__instance.__setup()
+        #if SeefoodAI.__instance != None:
+         #   raise Exception("This class is a Signleton!")
+        #else:
+        #    SeefoodAI.__instance = self
+        self.__setup()
+        self.sess = self.class_scores = self.x_input = self.keep_prob = None
+        self.scores = 0
+        #    SeefoodAI.__instance.__setup()
         # Seefood AI instance has been created!
 
-    @staticmethod
+    """ @staticmethod
     def getInstance():
         ''' Static access method '''
         if SeefoodAI.__instance is None:
             SeefoodAI()
-        return SeefoodAI.__instance
+        return SeefoodAI.__instance """
 
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
@@ -78,7 +79,7 @@ class SeefoodAI(object):
             stat = self.sess.run(self.class_scores, {
                 self.x_input: img_tensor, self.keep_prob: 1.})
             # Update score variable
-            # BUG: Scores shall reset to == 0, whenever a new image is process.
+            # Scores shall reset to == 0, whenever a new image is process.
             self.setScores(stat)
             print("[--------------** Given Image Has Been Analyzed **----------------]")
             # return true when an image is processed.
