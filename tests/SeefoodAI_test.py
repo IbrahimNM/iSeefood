@@ -156,11 +156,11 @@ def test_getScores2(shared_instance):
 
 def test_getResult(shared_instance):
     lastStat = shared_instance.getScores()
-    assert shared_instance.getResult(lastStat) is True, "I see food in imahe"
+    assert shared_instance.getResult(lastStat) is True, "Positive results."
 
 
 def test_getResult1(shared_instance):
-    cwd = os.getcwd()  # get current-working-directory
     # run an image without food.
-    test = shared_instance.process(cwd+"/iSeefood/samples/poodle.jpg")
-    assert test is False, "shared_instance.getScores()"
+    test = shared_instance.process(os.getcwd()+"/iSeefood/samples/poodle.jpg")
+    lastStat = shared_instance.getScores()
+    assert shared_instance.getResult(lastStat) is False, "Negative results. "
