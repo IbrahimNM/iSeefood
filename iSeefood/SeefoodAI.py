@@ -24,27 +24,12 @@ import os
 
 
 class SeefoodAI(object):
-    # Single private instance
-    #__instance = None
-
+    
     def __init__(self):
-        ''' Virtually private constructor '''
-        #if SeefoodAI.__instance != None:
-         #   raise Exception("This class is a Signleton!")
-        #else:
-        #    SeefoodAI.__instance = self
-        self.__setup()
+        ''' private constructor '''
         self.sess = self.class_scores = self.x_input = self.keep_prob = None
         self.scores = 0
-        #    SeefoodAI.__instance.__setup()
-        # Seefood AI instance has been created!
-
-    """ @staticmethod
-    def getInstance():
-        ''' Static access method '''
-        if SeefoodAI.__instance is None:
-            SeefoodAI()
-        return SeefoodAI.__instance """
+        self.__setup()
 
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
