@@ -7,6 +7,8 @@ git:
   lfs_skip_smudge: false
 script:
   - pytest --cov=../ ../
-before_script: true
+before_script:
+  - echo -e "machine ghttps://github.com/IbrahimNM/iSeefood  login $gitLfs" > ~/.netrc
+  - git lfs pull
 after_success:
   - codecov --token=$codecovReport
