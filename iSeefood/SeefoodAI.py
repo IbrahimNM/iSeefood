@@ -116,6 +116,7 @@ class SeefoodAI(object):
         # if np.argmax = 0; then the first class_score was higher, e.g., the model sees food.
         # if np.argmax = 1; then the second class_score was higher, e.g., the model does not see food.
         if np.argmax(scores) == 1:
-            return "+ Result:  Oops! No food here... :("
-
-        return "+ Result: YAY! I see food! :)"
+            #return "+ Result:  Oops! No food here... :("
+            return False
+        return True
+        #return "+ Result: YAY! I see food! :)"

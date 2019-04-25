@@ -149,3 +149,7 @@ def test_getScores2(shared_instance):
     # Check that returned value is of type nm.ndarray.
     assert isinstance(
         result, numpy.ndarray), "Get score returned valid data type."
+def test_getResult(shared_instance):
+    lastStat = shared_instance.getScores()
+    assert shared_instance.getResult(lastStat) is True, "I see food in imahe"
+    
