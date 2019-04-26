@@ -9,10 +9,11 @@ import os
 
 SCOPE = "function"
 
-
+global current 
+current = SeefoodAI()
 @pytest.fixture(scope=SCOPE)
 def shared_instance():
-    current = SeefoodAI.getInstance()
+    global current
     yield current
 
 
@@ -23,9 +24,8 @@ def shared_instance():
 def test_process1(shared_instance):
     ''' TEST CASE: Pass valid file-type-path to be processed'''
     cwd = os.getcwd()  # get current-working-directory
-    # FIXME: assure that setScore() clears out after each process.
-    #test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
-    #assert test is True, "Process1: Valid image to be processed."
+    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
+    assert test is True, "Process1: Valid image to be processed." + cwd
 
 
 def test_process2(shared_instance):
@@ -79,39 +79,51 @@ def test_validatePath4(shared_instance):
     assert pathState is False, "Parameter type Test #2"
 
 
-''' Test the helper units '''
-''' Expected: only accepts a non empty string'''
+''' Test the directory existance checker unit '''
+''' Expected: Only existed directories are accepted '''
 
-def test_directoryExist(shared_instance):
-    ''' TODO: Test the directory existance checker unit '''
-    ''' Expected: Only existed directories are accepted '''
+
+def test_validateExistence(shared_instance):
+
     # get current working directory
     cwd = os.getcwd()
     # Valid file path
-    result = shared_instance.directoryExist(
+    result = shared_instance.validateExistence(
         cwd+"/iSeefood/samples/cookies.png")
     assert result is True, cwd + "/iSeefodd/samples/cookies.png directory exists"
 
+
+def test_validateExistence1(shared_instance):
     # Invalid file path
-    result = shared_instance.directoryExist("samles/cookies.png")
+    result = shared_instance.validateExistence("samles/cookies.png")
     assert result is False, "/home/ibrahim/Desktop/iSeefood/iSeefood/samples/cookies.png directory exists"
 
 
-def test_CheckFileExtension(shared_instance):
-    ''' Test file extension checker '''
-    ''' Expected: Only .png .jpg files are accepted '''
+''' Test file extension checker '''
+''' Expected: Only .png .jpg files are accepted '''
 
+
+def test_validateExtension(shared_instance):
     # Valid file ext. PNG
-    result = shared_instance.checkFileExtension("image.png")
+    result = shared_instance.validateExtension("image.png")
     assert result is True, "PNG file extention test"
+
+
+def test_validateExtension1(shared_instance):
     # Valid file ext. JPG
-    result = shared_instance.checkFileExtension("image.jpg")
+    result = shared_instance.validateExtension("image.jpg")
     assert result is True, "JPG file extention test"
+
+
+def test_validateExtension2(shared_instance):
     # Invalid file ext. NO EXT.
-    result = shared_instance.checkFileExtension("image")
+    result = shared_instance.validateExtension("image")
     assert result is False, "None file extention test"
+
+
+def test_validateExtension3(shared_instance):
     # Invalid file ext. Empty
-    result = shared_instance.checkFileExtension("")
+    result = shared_instance.validateExtension("")
     assert result is False, "Empty file test"
 
 
@@ -128,7 +140,7 @@ def test_getScores1(shared_instance):
     ''' TEST CASE: Getting the score unit w/o setting the score'''
     # Get scores
     result = shared_instance.getScores()
-    assert result == 0, "Score is none!"
+    assert  isinstance(result, numpy.ndarray), "Score is none!"
 
 
 def test_getScores2(shared_instance):
@@ -139,4 +151,19 @@ def test_getScores2(shared_instance):
     # Get score.
     result = shared_instance.getScores()
     # Check that returned value is of type nm.ndarray.
-    assert isinstance(result, numpy.ndarray), "Get score returned valid data type."
+    assert isinstance(
+        result, numpy.ndarray), "Get score returned valid data type."
+
+
+def test_getResult(shared_instance):
+    lastStat = shared_instance.getScores()
+    assert shared_instance.getResult(lastStat) is True, "I see food in imahe"
+
+
+def test_getResult1(shared_instance):
+    cwd = os.getcwd()  # get current-working-directory
+    # run an image without food.
+    test = shared_instance.process(cwd+"/iSeefood/samples/poodle.png")
+    lastStat = shared_instance.getScores()
+    assert shared_instance.getResult(
+        lastStat) is False, "shared_instance.getScores()"

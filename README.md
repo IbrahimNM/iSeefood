@@ -19,28 +19,32 @@
 </p>
 
 ## What Is This?
-  A python module to recognize the existence of food in images by using a trained AI. 
-## Prerequisites
+  A python module to recognize the existence of food in images by using a trained AI - [SFCA](https://github.com/wsu-wacs/seefood). 
+## Dependencies
+In order to run the iSeefood module, you need to install the following packages: 
   * Numpy
   * Tensorflow
   * Pillow 
+  * Nose
+  * Tornado
   
-  - You can just run this command to install all required packages:
+  - You can just run the following command to install all required packages:
   ```console
   $ pip install -r requirements.txt
   ```
   
 ## How To Use This
 1. **Download**/ **Clone** the source code. 
-  > **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
+   
+   **NOTE**: Make sure that you download all the saved_model data file (≈217MB). 
   
-You can download the saved_model files:
-  1. Manualy through the repository.
-  2. By running the following command:
-        
-      ```console
-      $ git lfs pull
-      ```
+    You can download the saved_model files:
+      1. Manualy through the repository.
+      2. By running the following command:
+
+          ```console
+          $ git lfs pull
+          ```
 2. **Copy** the *iSeefood* file to your project directory. 
     
     Recommended file structure:
@@ -69,7 +73,7 @@ You can download the saved_model files:
     ```python
       example = SeefoodAI()
     ```
-5. **Pass** an image to be processed.
+5. **Pass** an image to be processed (**.png and .jpg only**).
     ```python
       example.process('../image.png')
     ```
@@ -79,9 +83,23 @@ You can download the saved_model files:
     ```
 7. **Evaluate** the statistics.
     ```python
-      finalResult = example.evaluateScore(statistics)
+      result = example.getResult(statistics)
     ```
-### Note
+### Example
+  ```python
+  from iSeefood.SeefoodAI import SeefoodAI
+
+  example = SeefoodAI()
+  example.process("/iSeefood/samples/cookies.png")
+  statistics = example.getScores()
+  result = example.getResult(statistics)
+  print  'Does the image contains food: ', result
+  ```
+  #### Output
+  ```bash
+  Does the image contains food:  True
+  ```
+## :warning: Notes
   * SeefoodAI class **assumes** that the saved_models are stored in the following path:
       ```bash
       yourWorkingDirectory/iSeefood/saved_model/
@@ -97,6 +115,13 @@ You can download the saved_model files:
       saver.restore(self.sess, tf.train.latest_checkpoint('yourCustomizedPath/iSeefood/saved_model/'))
       ......
     ```
+## :page_with_curl: Documentation
+|   Function    |   Parameter   | Return value | Description|
+| ------------- | ------------- | ------------ | -----------
+|   process()     | image_path:String  | True/False:bool     | **If** the image has been processed, then True. **Else**, then False. |
+|  getScores()    | ---           |   numpy.ndarray     | Returns the data of the last processed image. 
+|  getResult()  | scores:numpy.ndarray  | True/False:bool    | **If** there is food in the image, then True. **Else**, then False.
+
 ## Built With
 
 * [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
