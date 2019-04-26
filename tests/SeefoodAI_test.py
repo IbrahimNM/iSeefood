@@ -9,7 +9,7 @@ import os
 
 SCOPE = "function"
 
-global current
+global current 
 current = SeefoodAI()
 @pytest.fixture(scope=SCOPE)
 def shared_instance():
@@ -19,6 +19,13 @@ def shared_instance():
 
 ''' Test the Process unit '''
 ''' Expected: only accepts valid file type & path '''
+
+
+def test_process1(shared_instance):
+    ''' TEST CASE: Pass valid file-type-path to be processed'''
+    cwd = os.getcwd()  # get current-working-directory
+    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
+    assert test is True, "Process1: Valid image to be processed." + cwd
 
 
 def test_process2(shared_instance):
@@ -133,14 +140,7 @@ def test_getScores1(shared_instance):
     ''' TEST CASE: Getting the score unit w/o setting the score'''
     # Get scores
     result = shared_instance.getScores()
-    assert not isinstance(result, numpy.ndarray), "Score is none!"
-
-
-def test_process1(shared_instance):
-    ''' TEST CASE: Pass valid file-type-path to be processed'''
-    cwd = os.getcwd()  # get current-working-directory
-    test = shared_instance.process(cwd+"/iSeefood/samples/cookies.png")
-    assert test is True, "Process1: Valid image to be processed." + cwd
+    assert  isinstance(result, numpy.ndarray), "Score is none!"
 
 
 def test_getScores2(shared_instance):

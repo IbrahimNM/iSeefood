@@ -24,7 +24,7 @@ import os
 
 
 class SeefoodAI(object):
-    
+
     def __init__(self):
         ''' private constructor '''
         self.sess = self.class_scores = self.x_input = self.keep_prob = None
@@ -33,7 +33,7 @@ class SeefoodAI(object):
 
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
-        # try initializing the AI instance attrs, catch possible errors.
+        # initializing the AI instance attrs, catch possible errors.
         try:
             self.sess = tf.Session()
             cwd = os.getcwd()
@@ -47,8 +47,6 @@ class SeefoodAI(object):
             self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
         except IOError as e:
             print "--- Error: Trained model files cannot be found. Please check README file for info. ---"
-
-        # Instance has been configured
 
     def process(self, image_path):
         ''' Process valid, existed file'''
