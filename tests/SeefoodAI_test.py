@@ -9,12 +9,21 @@ import os
 
 SCOPE = "function"
 
-global current 
+global current
 current = SeefoodAI()
+
+
 @pytest.fixture(scope=SCOPE)
 def shared_instance():
     global current
     yield current
+
+
+def test_getScores(shared_instance):
+    ''' TEST CASE: Getting the score unit before processing any image'''
+    # Get scores
+    result = shared_instance.getScores()
+    assert result == 0, "Score is none!"
 
 
 ''' Test the Process unit '''
@@ -127,27 +136,16 @@ def test_validateExtension3(shared_instance):
     assert result is False, "Empty file test"
 
 
-def test_setScore(shared_instance):
-    ''' TODO: Test setting stat scores unit '''
-
-    ''' FIXME: Check what type of data I should receive?
-               print type(current.getScores()) is numpy.ndarray
-    '''
-    assert True, "Set statistics score Test"
-
-
 def test_getScores1(shared_instance):
     ''' TEST CASE: Getting the score unit w/o setting the score'''
     # Get scores
     result = shared_instance.getScores()
-    assert  isinstance(result, numpy.ndarray), "Score is none!"
+    assert isinstance(result, numpy.ndarray), "Score is none!"
 
 
 def test_getScores2(shared_instance):
     ''' TEST CASE: getting the score unit w/ setting the score 
         w/ a valid data type'''
-    # Set score value to a correct data type (numpy.ndarray).
-    #shared_instance.setScores(numpy.array([[1, 2], [3, 4]]))
     # Get score.
     result = shared_instance.getScores()
     # Check that returned value is of type nm.ndarray.
