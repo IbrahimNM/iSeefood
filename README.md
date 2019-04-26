@@ -91,7 +91,7 @@ In order to run the iSeefood module, you need to install the following packages:
   from iSeefood.SeefoodAI import SeefoodAI
 
   example = SeefoodAI()
-  example.process("/iSeefood/samples/cookies.png")
+  example.process("../cookies.png")
   statistics = example.getScores()
   result = example.getResult(statistics)
   print  'Does the image contains food: ', result
