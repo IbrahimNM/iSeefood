@@ -19,7 +19,7 @@
 </p>
 
 ## What Is This?
-  A python module to recognize the existence of food in images by using a trained AI. 
+  A python module to recognize the existence of food in images by using a trained AI - [SFCA](https://github.com/wsu-wacs/seefood). 
 ## Prerequisites
 In order to run the iSeefood module, you need to install the following packages: 
   * Numpy
@@ -99,7 +99,7 @@ In order to run the iSeefood module, you need to install the following packages:
   ```bash
   Does the image contains food:  True
   ```
-### :warning: Notes
+## :warning: Notes
   * SeefoodAI class **assumes** that the saved_models are stored in the following path:
       ```bash
       yourWorkingDirectory/iSeefood/saved_model/
@@ -115,6 +115,13 @@ In order to run the iSeefood module, you need to install the following packages:
       saver.restore(self.sess, tf.train.latest_checkpoint('yourCustomizedPath/iSeefood/saved_model/'))
       ......
     ```
+## :page_with_curl: Documentation
+|   Function    |   Parameter   | Return value | Description|
+| ------------- | ------------- | ------------ | -----------
+|   process()     | image_path:String  | True/False:bool     | **If** the image has been processed, then True. **Else**, then False. |
+|  getScores()    | ---           |   numpy.ndarray     | Returns the data of the last processed image. 
+|  getResult()  | scores:numpy.ndarray  | True/False:bool    | **If** there is food in the image, then True. **Else**, then False.
+
 ## Built With
 
 * [Tensorflow](https://www.tensorflow.org/) - An E2E open source machine learning platform.
