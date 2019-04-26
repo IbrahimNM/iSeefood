@@ -20,7 +20,7 @@
 
 ## What Is This?
   A python module to recognize the existence of food in images by using a trained AI - [SFCA](https://github.com/wsu-wacs/seefood). 
-## Prerequisites
+## Dependencies
 In order to run the iSeefood module, you need to install the following packages: 
   * Numpy
   * Tensorflow
