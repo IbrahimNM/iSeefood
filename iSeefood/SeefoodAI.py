@@ -34,9 +34,9 @@ class SeefoodAI(object):
     def __setup(self):
         ''' Setting-up the SeefoodAI instance'''
         # initializing the AI instance attrs, catch possible errors.
-        try:
-            self.sess = tf.Session()
-            cwd = os.getcwd()
+        self.sess = tf.Session()
+        cwd = os.getcwd()
+        if os.path.exists(cwd+'/iSeefood/saved_model/model_epoch5.ckpt.meta'):
             saver = tf.train.import_meta_graph(
                 cwd+'/iSeefood/saved_model/model_epoch5.ckpt.meta')
             saver.restore(self.sess, tf.train.latest_checkpoint(
@@ -45,8 +45,6 @@ class SeefoodAI(object):
             self.x_input = graph.get_tensor_by_name('Input_xn/Placeholder:0')
             self.keep_prob = graph.get_tensor_by_name('Placeholder:0')
             self.class_scores = graph.get_tensor_by_name("fc8/fc8:0")
-        except IOError as e:
-            print "--- Error: Trained model files cannot be found. Please check README file for info. ---"
 
     def process(self, image_path):
         ''' Process valid, existed file'''
