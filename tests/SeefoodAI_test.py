@@ -147,7 +147,7 @@ def test_getScores2(shared_instance):
     ''' TEST CASE: getting the score unit w/ setting the score 
         w/ a valid data type'''
     # Set score value to a correct data type (numpy.ndarray).
-    shared_instance.setScores(numpy.array([[1, 2], [3, 4]]))
+    #shared_instance.setScores(numpy.array([[1, 2], [3, 4]]))
     # Get score.
     result = shared_instance.getScores()
     # Check that returned value is of type nm.ndarray.

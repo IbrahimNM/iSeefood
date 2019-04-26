@@ -61,7 +61,7 @@ class SeefoodAI(object):
                 self.x_input: img_tensor, self.keep_prob: 1.})
             # Update score variable
             # Scores shall reset to == 0, whenever a new image is process.
-            self.setScores(stat)
+            self.__setScores(stat)
             print("[--------------** Given Image Has Been Analyzed **----------------]")
             # return true when an image is processed.
             return True
@@ -83,7 +83,7 @@ class SeefoodAI(object):
             return True  # return true if file is valide
         return False  # return false otherwise
 
-    def setScores(self, stat):
+    def __setScores(self, stat):
         ''' Allow the AI to set the score variable '''
         # Set Score is not a public def., therefore no need to check data type.
         self.scores = stat
