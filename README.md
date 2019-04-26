@@ -10,6 +10,7 @@
         <img src="https://www.codefactor.io/repository/github/ibrahimnm/iseefood/badge" /></a>
   <a href="https://codecov.io/gh/IbrahimNM/iSeefood" alt="Contributors">
         <img src="https://codecov.io/gh/IbrahimNM/iSeefood/branch/master/graph/badge.svg?token=M1xWBWCg2X" /></a>
+  <a href="https://requires.io/github/IbrahimNM/iSeefood/requirements/?branch=master"><img        src="https://requires.io/github/IbrahimNM/iSeefood/requirements.svg?branch=master" alt="Requirements Status" /></a>
   <a href="https://opensource.org/licenses/mit-license.php" alt="Contributors">
         <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103" /></a>
   <a href="https://www.tensorflow.org/" alt="Contributors">
