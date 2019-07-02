@@ -5,7 +5,7 @@ tensorflow==1.14.0
 pillow==6.0.0
 # Packages below are only used for the repo. builds. 
 # iSeefood modules does not need the following packages to run. 
-pytest==5.0.0
+pytest==4.4.0
 codecov==2.0.15
 coverage==4.5.3
 pytest-cov==2.7.1
