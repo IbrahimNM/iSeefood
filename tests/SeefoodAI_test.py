@@ -73,7 +73,7 @@ def test_validatePath2(shared_instance):
     cwd = os.getcwd()
     pathState = shared_instance.validatePath(
         cwd+"/iSeefood/samples/cookies.png")
-    assert pathState is True, "Parameter type Test #2"
+    assert pathState is False, "Parameter type Test #2"
 
 
 def test_validatePath3(shared_instance):
