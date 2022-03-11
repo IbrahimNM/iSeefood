@@ -2,7 +2,7 @@ nose==1.3.7
 tornado==5.1.1
 numpy==1.16.4
 tensorflow==1.14.0
-pillow==6.2.0
+pillow==9.0.1
 # Packages below are only used for the repo. builds. 
 # iSeefood modules does not need the following packages to run. 
 pytest==4.4.0
