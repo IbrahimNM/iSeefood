@@ -6,6 +6,6 @@ pillow==6.2.0
 # Packages below are only used for the repo. builds. 
 # iSeefood modules does not need the following packages to run. 
 pytest==4.4.0
-codecov==2.0.15
+codecov==2.0.16
 coverage==4.5.3
 pytest-cov==2.7.1
